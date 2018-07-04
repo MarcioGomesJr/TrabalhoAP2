@@ -72,7 +72,7 @@ public class JanelaBase implements Runnable {
 		
 		//Iniciando o GidBagConstraints para organizar os paineis e setando suas dimenções
 		campos.setLayout(new GridBagLayout());
-		tamanho.height = altura - 100;
+		tamanho.height = altura - 90;
 		campos.setPreferredSize(tamanho);
 				
 		relogioP.setLayout(new GridBagLayout());				

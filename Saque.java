@@ -14,11 +14,11 @@ import javax.swing.JTextField;
 
 public class Saque extends JanelaBase implements ActionListener, ItemListener {
 
-	private JLabel lblNome;
+	private JLabel lblId;
 	private JLabel lblSenha;
 	private JLabel lblValor;
 	
-	private JTextField fdNome;
+	private JTextField fdId;
 	private JTextField fdSenha;
 	private JTextField fdValor;
 	
@@ -34,11 +34,11 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			super(600, 500, "Saque", posicao);
 			
 			//Instanciando os componentes e adicionando os botões ao Action Listener
-			lblNome = new JLabel("Nome: ");
+			lblId = new JLabel("CPF/CNPJ: ");
 			lblSenha = new JLabel("Senha: ");
 			lblValor = new JLabel("Valor: ");
 			
-			fdNome = new JTextField(10);
+			fdId = new JTextField(10);
 			fdSenha = new JTextField(10);
 			fdValor = new JTextField(10);
 			
@@ -65,7 +65,7 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			
 			gb.gridx = 0;
 			gb.gridy = 0;
-			campos.add(lblNome, gb);
+			campos.add(lblId, gb);
 			
 			gb.gridy = 2;
 			campos.add(lblSenha, gb);
@@ -93,7 +93,7 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			
 			gb.gridx = 1;
 			gb.gridy = 0;
-			campos.add(fdNome, gb);
+			campos.add(fdId, gb);
 					
 			gb.gridy = 2;
 			campos.add(fdSenha, gb);
@@ -135,13 +135,18 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			if(e.getSource() == corrente) {
 				if(corrente.isSelected())
 					poupanca.setSelected(false);
+				if(!corrente.isSelected() && !poupanca.isSelected()) {
+					corrente.setSelected(true);
+				}
 			}
 			
 			if(e.getSource() == poupanca) {
 				if(poupanca.isSelected())
 					corrente.setSelected(false);
+				if(!poupanca.isSelected() && !corrente.isSelected()) {
+					poupanca.setSelected(true);
+				}
 			}
-			
 		}
 
 }
