@@ -37,11 +37,13 @@ public class CriarConta extends JanelaBase implements ActionListener {
 		gb.fill = GridBagConstraints.HORIZONTAL;
 		
 		gb.weightx = 0.5;
-		gb.weighty = 0.5;
+		gb.weighty = 2;
 		
 		gb.gridx = 1;
 		gb.gridy = 0;
 		campos.add(espacos[0], gb);
+		
+		gb.weighty = 0.2;
 		
 		gb.gridx = 1;
 		gb.gridy = 1;

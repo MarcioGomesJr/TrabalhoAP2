@@ -13,8 +13,6 @@ import javax.swing.*;
 public class AbaMenus extends JanelaBase implements ActionListener {
 	
 	//Botões para abrir os outros menus
-	private JButton registrarPessoaFB;
-	private JButton registrarPessoaJB;
 	private JButton registrarFuncionarioB;
 	private JButton criarContaB;
 	private JButton caixaEletronicoB;
@@ -26,14 +24,10 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		super(600, 500, "Menu Principal", posicao);
 		
 		//Instanciando os botões e os adicionando ao action Listener
-		registrarPessoaFB = new JButton("Registrar Pessoa Física");
-		registrarPessoaJB = new JButton("Registrar Pessoa Jurídica");
 		registrarFuncionarioB = new JButton("Registrar Funcionário");
 		criarContaB = new JButton("Criar Conta");
 		caixaEletronicoB = new JButton("Caixa Eletrônico");
 		
-		registrarPessoaFB.addActionListener(this);
-		registrarPessoaJB.addActionListener(this);
 		registrarFuncionarioB.addActionListener(this);
 		criarContaB.addActionListener(this);
 		caixaEletronicoB.addActionListener(this);
@@ -45,25 +39,20 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		gb.fill = GridBagConstraints.HORIZONTAL;
 		
 		gb.weightx = 0.5;
+		gb.weighty = 5;
+		
+		gb.gridx = 1;
+		gb.gridy = 0;
+		campos.add(espacos[2], gb);
+		
 		gb.weighty = 0.5;
 		
-		gb.gridx = 1;
-		gb.gridy = 0;		
-		campos.add(registrarPessoaFB, gb);
-		
-		gb.gridx = 1;
-		gb.gridy = 1;		
-		campos.add(registrarPessoaJB, gb);
-		
-		gb.gridx = 1;
 		gb.gridy = 2;		
 		campos.add(registrarFuncionarioB, gb);
-		
-		gb.gridx = 1;
+	
 		gb.gridy = 3;		
 		campos.add(criarContaB, gb);
 		
-		gb.gridx = 1;
 		gb.gridy = 4;		
 		campos.add(caixaEletronicoB, gb);
 		
@@ -83,26 +72,6 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 	
 	//Controla o comportamento dos botões
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == registrarPessoaFB) {
-			
-			janela.dispose();
-			new Thread() {
-				public void run() {
-					new RegistrarPessoaF(janela.getLocation());
-				}
-			}.start();
-		}
-		
-		if(e.getSource() == registrarPessoaJB) {
-			
-			janela.dispose();
-			new Thread() {
-				public void run() {
-					new RegistrarPessoaJ(janela.getLocation());
-				}
-			}.start();
-		}
 		
 		if(e.getSource() == registrarFuncionarioB) {
 			

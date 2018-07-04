@@ -37,11 +37,13 @@ public class CaixaEletronico extends JanelaBase implements ActionListener {
 		gb.fill = GridBagConstraints.HORIZONTAL;
 		
 		gb.weightx = 0.9;
-		gb.weighty = 0.2;
+		gb.weighty = 1;
 		
 		gb.gridx = 1;
 		gb.gridy = 0;
 		campos.add(espacos[0], gb);
+		
+		gb.weighty = 0.1;
 		
 		gb.gridx = 1;
 		gb.gridy = 1;
