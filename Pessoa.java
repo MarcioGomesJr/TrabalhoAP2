@@ -20,7 +20,6 @@ public abstract class Pessoa {
 		this.endereco = endereco;
 	}
 
-	@Override
 	public String toString() {
 		return "id: " + id + ", nome=" + nome + ", endereco=" + endereco + "]";
 	}

@@ -45,7 +45,7 @@ public abstract class Conta{
 		return senha;
 	}
 	
-	private boolean VerificaSenha(String Senha) {
+	public boolean VerificaSenha(String Senha) {
 		if (senha.length()>8) {
 			return false;
 		}
