@@ -1,6 +1,6 @@
 package classesDiagrama;
 
-// Autoria: Márcio Gomes Borges Júnior (201703685)
+// Autoria: MÃ¡rcio Gomes Borges JÃºnior (201703685)
 
 
 public abstract class Conta{
@@ -16,7 +16,7 @@ public abstract class Conta{
 	}
 	
 	public String getTipo() {
-		return "N�o especificado";
+		return "Não especificado";
 	}
 
 	public double getSaldo() {
@@ -60,7 +60,7 @@ public abstract class Conta{
 		this.saldo = saldo;
 	}
 	
-	private boolean VerificaSenha(String Senha) {
+	private boolean VerificaSenha(String senha) {
 		if(senha.length()<8) {
 			return false;
 		}
