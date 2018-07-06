@@ -1,3 +1,5 @@
+package classesDiagrama;
+
 // Autoria: Márcio Gomes Borges Júnior (201703685)
 
 public abstract class Pessoa {
@@ -5,13 +7,27 @@ public abstract class Pessoa {
 	protected static int geraid = 0;
 	protected String id;
 	protected String nome;
-	private Endereco endereco;	
+	private Endereco endereco;
+	
 	protected abstract String gerarID();
+	
+	public Pessoa() {
+		geraid++;
+		id = String.valueOf(geraid);
+	}
+	
+	protected int getGeraid() {
+		return geraid;
+	}
 
 	protected String getId() {
 		return id;
 	}
 
+	protected Endereco getEndereco() {
+		return endereco;
+	}
+	
 	protected String getNome() {
 		return nome;
 	}
@@ -19,8 +35,12 @@ public abstract class Pessoa {
 	private void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
+	protected void atribuirEndereco(Endereco endereco) {
+		setEndereco(endereco);
+	}
 
 	public String toString() {
-		return "id: " + id + ", nome=" + nome + ", endereco=" + endereco + "]";
+		return "Id: " + id + "\nNome: " + nome + "\nEndereco:\n" + endereco.toString();
 	}
 }

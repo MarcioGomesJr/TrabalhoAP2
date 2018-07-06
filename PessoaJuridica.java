@@ -1,17 +1,20 @@
+package classesDiagrama;
 
 public class PessoaJuridica extends Pessoa {
 	protected static int geraID = 0;
 	private String cnpj;
 	
-	public PessoaJuridica(String nome, Endereco endereco, String cnpj) {
+	public PessoaJuridica(String nome, Endereco endereco, String cnpj) throws CpfCnpjInvalidoException {
 		super();
 		this.nome = nome;
-		this.cnpj = cnpj;
-		//this.endereco = endereco;
+		atribuirEndereco(endereco);
+		geraid++;
+		id = String.valueOf(geraid);
+		setCNPJ(cnpj);
 	}
 
 	protected String gerarID() {
-		return null;
+		return "Pessoa Jurídica - " + super.getGeraid() + " - " + geraid;
 	}
 	
 	private boolean verificaCNPJ(String cnpj) {        
@@ -32,7 +35,7 @@ public class PessoaJuridica extends Pessoa {
 	}
 
 	public String toString() {
-		return "\ncnpj:" + cnpj;
+		return gerarID() + "\nNome: " + nome + "\nCNPJ: " + cnpj + "\nEndereco:\n" + getEndereco().toString();
 	}
 	
 	

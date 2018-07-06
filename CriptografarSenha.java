@@ -1,16 +1,18 @@
+package classesDiagrama;
+
 // Autoria: MÃ¡rcio Gomes Borges JÃºnior (201703685)
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.swing.JOptionPane;
+
 public class CriptografarSenha {
 	
-	static Conta senha;
-	
-	public static byte[] gerarHash(){
+	private static byte[] gerarHash(String senha){
 		  try {
 		    MessageDigest md = MessageDigest.getInstance("SHA-256");
-		    md.update(senha.getSenha().getBytes());
+		    md.update(senha.getBytes());
 		    return md.digest();
 		  } catch (NoSuchAlgorithmException e) {
 		    return null;
@@ -28,7 +30,33 @@ public class CriptografarSenha {
 		   return s.toString();
 		}
 	
+	public static String criptografar(String senha) {
+		return stringHexa(gerarHash(senha));
+	}
+	
 		public static void main(String[] args) {
-		  System.out.println(stringHexa(gerarHash()));
-		}
+		  
+			Pessoa rafael = null;
+			
+			try {
+				rafael = new PessoaFisica("Rafael Nunes", new Endereco("Rua"
+						, "Rua 11", 123, "Centro", "Goiânia", "Goiás", "70100-100"), "123.456.789-10");
+				
+				JOptionPane.showMessageDialog(null, rafael.toString());
+			} catch (CpfCnpjInvalidoException | CepInvalidoException e) {
+				
+				JOptionPane.showMessageDialog(null, e.getMessage());	
+			}
+			
+			Conta conta;
+			
+			try {
+				conta = new Poupanca(rafael, "Hahfghdfgjndkkk");
+				
+				JOptionPane.showMessageDialog(null, conta.toString());
+			} catch (SenhaInvalidaException | NullPointerException e) {
+				
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			}
+	}
 }
