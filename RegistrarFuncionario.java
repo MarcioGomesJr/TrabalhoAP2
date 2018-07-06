@@ -7,7 +7,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import classesDiagrama.CepInvalidoException;
+import classesDiagrama.CpfCnpjInvalidoException;
+import classesDiagrama.Endereco;
+import classesDiagrama.Funcionario;
 
 //Classe que monta a janela para registrar funcionários
 //Rafael Nunes Santana
@@ -186,6 +192,19 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 					}
 				}.start();
 			}
+			if(e.getSource() == registrarB) {
+				try {
+					Funcionario funcionario = new Funcionario(fdNome.getText(),new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdCpf.getText(),fdCargo.getText());
+					BancoDeDados.funcionarios.add(funcionario);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null,e1.getMessage());
+				} catch (CpfCnpjInvalidoException e1) {
+					JOptionPane.showMessageDialog(null,e1.getMessage());
+				} catch (CepInvalidoException e1) {
+					JOptionPane.showMessageDialog(null,e1.getMessage());
+				}
+			}
 		}
+		
 
 }
