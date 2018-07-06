@@ -44,7 +44,11 @@ public class Endereco {
 		}
 		
 		private String gerarID() {
+<<<<<<< HEAD
+			return "Endereï¿½o - " + geraid;
+=======
 			return "Endereço - " + geraid;
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 		}
 
 
@@ -129,6 +133,10 @@ public class Endereco {
 					+ "\nEstado: " + estado + "\nCep: " + cep;
 		}
 		
+<<<<<<< HEAD
+		protected boolean verificaCEP(String cep) {
+			return cep.matches("\\d{5}-\\d{3}");
+=======
 		protected boolean verificaCEP(String cep) {        //AUTORIA: MARCIO
 			char[] CEP = cep.toCharArray();
 			int i;
@@ -151,10 +159,8 @@ public class Endereco {
 			if(CEP.length == 9) {
 				return true;
 			}
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 			
-			else { 
-				return false;
-			}
 		}
 }
 

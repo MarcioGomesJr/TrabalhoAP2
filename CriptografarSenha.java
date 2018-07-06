@@ -40,7 +40,11 @@ public class CriptografarSenha {
 			
 			try {
 				rafael = new PessoaFisica("Rafael Nunes", new Endereco("Rua"
+<<<<<<< HEAD
+						, "Rua 11", 123, "Centro", "Goiï¿½nia", "Goiï¿½s", "70100-100"), "123.456.789-10");
+=======
 						, "Rua 11", 123, "Centro", "Goiânia", "Goiás", "70100-100"), "123.456.789-10");
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 				
 				JOptionPane.showMessageDialog(null, rafael.toString());
 			} catch (CpfCnpjInvalidoException | CepInvalidoException e) {

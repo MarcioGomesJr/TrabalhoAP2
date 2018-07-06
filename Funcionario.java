@@ -10,7 +10,11 @@ public class Funcionario extends PessoaFisica{
 	}
 	
 	protected String gerarID() {
+<<<<<<< HEAD
+		return "Funcionï¿½rio - " + super.getGeraid() + " - " + geraid;
+=======
 		return "Funcionário - " + super.getGeraid() + " - " + geraid;
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 	}
 	
 	public void setCargo(String cargo) {
