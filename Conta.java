@@ -23,15 +23,9 @@ public abstract class Conta{
 		return saldo;
 	}
 	
-<<<<<<< HEAD
-	public abstract void deposito(double valor, String senha) throws DepositoInvalidoException, SenhaIncorretaException;
-	
-	public abstract void saque(double valor, String senha) throws SaqueInvalidoException, SenhaIncorretaException;
-=======
 	public abstract void deposito(double valor);
 	
 	public abstract void saque(double valor);
->>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 
 	public Pessoa getCliente(){
 		return cliente;
