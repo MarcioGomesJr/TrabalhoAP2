@@ -1,3 +1,5 @@
+package classesDiagrama;
+
 // Autoria: Márcio Gomes Borges Júnior (201703685)
 
 public class Endereco {
@@ -15,7 +17,6 @@ public class Endereco {
 		
 		public Endereco(String tipe, String tipoDeLogradouro, String logradouro, int numero,
 				String bairro, String cidade, String estado, String cep) throws CepInvalidoException {
-			super();
 			this.tipe = tipe;
 			this.tipoDeLogradouro = tipoDeLogradouro;
 			this.logradouro = logradouro;
@@ -23,6 +24,8 @@ public class Endereco {
 			this.bairro = bairro;
 			this.cidade = cidade;
 			this.estado = estado;
+			geraid++;
+			id = String.valueOf(geraid);
 			setCep(cep);
 		}
 
@@ -35,11 +38,13 @@ public class Endereco {
 			this.bairro = bairro;
 			this.cidade = cidade;
 			this.estado = estado;
+			geraid++;
+			id = String.valueOf(geraid);
 			setCep(cep);
 		}
 		
 		private String gerarID() {
-			return id;
+			return "Endere�o - " + geraid;
 		}
 
 
@@ -119,9 +124,9 @@ public class Endereco {
 
 		@Override
 		public String toString() {
-			return "geraid: " + geraid + "\nId=" + id + "\nTipe: " + tipe + "\nTipoDeLogradouro" + tipoDeLogradouro
-					+ ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade
-					+ ", estado=" + estado + ", cep=" + cep + "]";
+			return gerarID() + "\nTipe: " + tipe + "\nTipoDeLogradouro: " + tipoDeLogradouro
+					+ "\nLogradouro: " + logradouro + "\nNumero: " + numero + "\nBairro: " + bairro + "\nCidade: " + cidade
+					+ "\nEstado: " + estado + "\nCep: " + cep;
 		}
 		
 		protected boolean verificaCEP(String cep) {        //AUTORIA: MARCIO
@@ -143,7 +148,7 @@ public class Endereco {
 				}
 			}
 			
-			if(CEP[i] == '\0') {
+			if(CEP.length == 9) {
 				return true;
 			}
 			

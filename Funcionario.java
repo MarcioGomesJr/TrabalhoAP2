@@ -1,3 +1,4 @@
+package classesDiagrama;
 
 public class Funcionario extends PessoaFisica{
 	protected static int geraid = 0;
@@ -9,7 +10,7 @@ public class Funcionario extends PessoaFisica{
 	}
 	
 	protected String gerarID() {
-		return null;
+		return "Funcionário - " + super.getGeraid() + " - " + geraid;
 	}
 	
 	public void setCargo(String cargo) {
@@ -21,7 +22,7 @@ public class Funcionario extends PessoaFisica{
 	}
 
 	public String toString() {
-		return "\ncargo:" + cargo;
+		return gerarID() + "\nNome: " + nome + "\nCPF: " + super.getCPF() + "\nCargo: " + cargo + "\nEndereco:\n" + getEndereco().toString();
 	}
 
 	

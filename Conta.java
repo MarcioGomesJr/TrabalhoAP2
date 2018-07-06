@@ -1,40 +1,39 @@
+package classesDiagrama;
+
 // Autoria: Márcio Gomes Borges Júnior (201703685)
 
 
 public abstract class Conta{
 	
-	protected int geraNumero = 0;
+	protected static int geraNumero = 0;
 	private int numero;
-	private double saldo = 0;
+	private double saldo;
 	private Pessoa cliente;
 	private String senha;
-	
-	
-	public Conta(int geraNumero, int numero, double saldo, Pessoa cliente, String senha) throws SenhaInvalidaException {
-		this.geraNumero = geraNumero;
-		this.numero = numero;
-		this.saldo = saldo;
-		this.cliente = cliente;
-		setSenha(senha);
-	}
 
-	protected int geraNumero() {
+	protected static int geraNumero() {
 		return geraNumero;
 	}
+	
+	public String getTipo() {
+		return "N�o especificado";
+	}
 
-	private double getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 	
 	public abstract void deposito(double valor);
+	
+	public abstract void saque(double valor);
 
-	private Pessoa getCliente(){
+	public Pessoa getCliente(){
 		return cliente;
 	}
 	
-	private void setSenha(String senha) throws SenhaInvalidaException{
+	protected void setSenha(String senha) throws SenhaInvalidaException{
 		if(VerificaSenha(senha)) {
-			this.senha = senha;
+			this.senha = CriptografarSenha.criptografar(senha);
 		}
 		else {
 			throw new SenhaInvalidaException();
@@ -45,18 +44,28 @@ public abstract class Conta{
 		return senha;
 	}
 	
-	public boolean VerificaSenha(String Senha) {
-		if (senha.length()>8) {
-			return false;
-		}
-		else if(senha.length()<8) {
+	public int getNumero() {
+		return numero;
+	}
+	
+	protected void setCliente(Pessoa cliente) {
+		this.cliente = cliente;
+	}
+	
+	protected void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+	protected void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	
+	private boolean VerificaSenha(String Senha) {
+		if(senha.length()<8) {
 			return false;
 		}
 		else {
 			return true;
 		}
 	}
-	
-	public abstract void saque(double valor);
-
 }
