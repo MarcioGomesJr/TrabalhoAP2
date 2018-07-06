@@ -13,10 +13,17 @@ public class PessoaFisica extends Pessoa {
 	}
 
 	protected String gerarID() { 
+<<<<<<< HEAD
+		return "Pessoa Fï¿½sica - " + super.getGeraid() + " - " + geraid;
+	}
+	
+	public static boolean verificaCPF(String cpf) {        
+=======
 		return "Pessoa Física - " + super.getGeraid() + " - " + geraid;
 	}
 	
 	private boolean verificaCPF(String cpf) {        
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 		return cpf.matches("\\d{3}.\\d{3}.\\d{3}-\\d{2}");
 	}
 	

@@ -14,10 +14,14 @@ public class PessoaJuridica extends Pessoa {
 	}
 
 	protected String gerarID() {
+<<<<<<< HEAD
+		return "Pessoa Jurï¿½dica - " + super.getGeraid() + " - " + geraid;
+=======
 		return "Pessoa Jurídica - " + super.getGeraid() + " - " + geraid;
+>>>>>>> b50680996f58592eee15154432b4804f4a40d9cb
 	}
 	
-	private boolean verificaCNPJ(String cnpj) {        
+	public static boolean verificaCNPJ(String cnpj) {        
 		return cnpj.matches("\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}");
 	}
 	
