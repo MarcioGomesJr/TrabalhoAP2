@@ -200,8 +200,10 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 					pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 					conta = new ContaCorrente(pessoa, fdSenha.getText());
 					
-					BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
-					BancoDeDados.contasCorrente.add(conta);
+					if(!BancoDeDados.verificar((PessoaFisica) pessoa)) {
+						BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
+						BancoDeDados.contasCorrente.add(conta);
+					}
 					
 				} catch (NumberFormatException e1) {
 					JOptionPane.showInputDialog(null, "Por favor digite um número em \"Número\"");
@@ -220,8 +222,10 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 					pessoa = new PessoaJuridica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 					conta = new ContaCorrente(pessoa, fdSenha.getText());
 					
-					BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
-					BancoDeDados.contasCorrente.add(conta);
+					if(!BancoDeDados.verificar((PessoaJuridica) pessoa)) {
+						BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
+						BancoDeDados.contasCorrente.add(conta);
+					}
 					
 				} catch (NumberFormatException e1) {
 					JOptionPane.showInputDialog(null, e1.getMessage());

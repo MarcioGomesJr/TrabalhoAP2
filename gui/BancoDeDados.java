@@ -29,9 +29,9 @@ public class BancoDeDados {
 	
 	public static boolean verificar(PessoaFisica pessoa) {
 		boolean pessoaExiste = false;
-		for(Funcionario f : BancoDeDados.funcionarios) {
+		for(PessoaFisica f : BancoDeDados.pessoasFisicas) {
 			if(pessoa.getCPF().equals(f.getCPF())) {
-				JOptionPane.showMessageDialog(null, "Uma pessoa com esse CPF já foi registrada");
+				JOptionPane.showMessageDialog(null, "Você já possui uma conta!");
 				pessoaExiste = true;
 			}
 		}
@@ -42,7 +42,7 @@ public class BancoDeDados {
 		boolean pessoaExiste = false;
 		for(PessoaJuridica f : BancoDeDados.pessoasJuridicas) {
 			if(pessoa.getCNPJ().equals(f.getCNPJ())) {
-				JOptionPane.showMessageDialog(null, "Uma pessoa jurídica com esse CNPJ já foi registrada");
+				JOptionPane.showMessageDialog(null, "Essa empresa já possui uma conta!");
 				pessoaExiste = true;
 			}
 		}
