@@ -206,8 +206,10 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 					pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 					conta = new Poupanca(pessoa, fdSenha.getText());
 					
-					BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
-					BancoDeDados.poupancas.add(conta);
+					if(!BancoDeDados.verificar((PessoaFisica) pessoa)) {
+						BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
+						BancoDeDados.poupancas.add(conta);
+					}
 					
 				} catch (NumberFormatException e1) {
 					JOptionPane.showInputDialog(null, e1.getMessage());
@@ -226,8 +228,10 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 					pessoa = new PessoaJuridica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 					conta = new Poupanca(pessoa, fdSenha.getText());
 					
-					BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
-					BancoDeDados.poupancas.add(conta);
+					if(!BancoDeDados.verificar((PessoaJuridica) pessoa)) {
+						BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
+						BancoDeDados.poupancas.add(conta);
+					}
 					
 				} catch (NumberFormatException e1) {
 					JOptionPane.showInputDialog(null, e1.getMessage());
