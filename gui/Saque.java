@@ -9,8 +9,12 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import classesDiagrama.PessoaFisica;
+import classesDiagrama.PessoaJuridica;
 
 public class Saque extends JanelaBase implements ActionListener, ItemListener {
 
@@ -127,8 +131,25 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 					}
 				}.start();
 			}
-		}
+			if(e.getSource() == depositarB) {
+				
+				if(PessoaFisica.verificaCPF(fdId.getText())) 
+					if(corrente.isSelected())
+						Operacoes.correntePessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+					else
+						Operacoes.poupancaPessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 
+				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))
+					if(corrente.isSelected())
+						Operacoes.correntePessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+					else
+						Operacoes.poupancaPessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+
+				else 	
+					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ é inválido");
+				}
+			
+			}
 		@Override
 		public void itemStateChanged(ItemEvent e) {
 			

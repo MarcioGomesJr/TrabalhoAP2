@@ -203,44 +203,38 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 				
 				try {
 					
-					pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
-					conta = new Poupanca(pessoa, fdSenha.getText());
-					
-					if(!BancoDeDados.verificar((PessoaFisica) pessoa)) {
+					if(!BancoDeDados.verificarPessoaJuridica(fdId.getText())) {
+
+						pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
+						conta = new Poupanca(pessoa, fdSenha.getText());
 						BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
 						BancoDeDados.poupancas.add(conta);
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
 					}
 					
 				} catch (NumberFormatException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (CpfCnpjInvalidoException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (CepInvalidoException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (SenhaInvalidaException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 			else {
 				
 				try {
 					
-					pessoa = new PessoaJuridica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
-					conta = new Poupanca(pessoa, fdSenha.getText());
-					
-					if(!BancoDeDados.verificar((PessoaJuridica) pessoa)) {
+					if(!BancoDeDados.verificarPessoaJuridica(fdId.getText())) {
+
+						pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
+						conta = new Poupanca(pessoa, fdSenha.getText());
 						BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
 						BancoDeDados.poupancas.add(conta);
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
 					}
 					
 				} catch (NumberFormatException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (CpfCnpjInvalidoException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (CepInvalidoException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
-				} catch (SenhaInvalidaException e1) {
-					JOptionPane.showInputDialog(null, e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 	}

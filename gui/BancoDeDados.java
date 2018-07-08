@@ -27,10 +27,11 @@ public class BancoDeDados {
 			BancoDeDados.funcionarios.add(funcionario);
 	}
 	
-	public static boolean verificar(PessoaFisica pessoa) {
+	public static boolean verificarPessoaFisica(String cpf) {
+		
 		boolean pessoaExiste = false;
 		for(PessoaFisica f : BancoDeDados.pessoasFisicas) {
-			if(pessoa.getCPF().equals(f.getCPF())) {
+			if(cpf.equals(f.getCPF())) {
 				JOptionPane.showMessageDialog(null, "Você já possui uma conta!");
 				pessoaExiste = true;
 			}
@@ -38,10 +39,11 @@ public class BancoDeDados {
 		return pessoaExiste;
 	}
 	
-	public static boolean verificar(PessoaJuridica pessoa) {
+	public static boolean verificarPessoaJuridica(String cnpj) {
+		
 		boolean pessoaExiste = false;
 		for(PessoaJuridica f : BancoDeDados.pessoasJuridicas) {
-			if(pessoa.getCNPJ().equals(f.getCNPJ())) {
+			if(cnpj.equals(f.getCNPJ())) {
 				JOptionPane.showMessageDialog(null, "Essa empresa já possui uma conta!");
 				pessoaExiste = true;
 			}

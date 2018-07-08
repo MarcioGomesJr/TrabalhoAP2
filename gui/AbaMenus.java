@@ -99,22 +99,30 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		
 		if(e.getSource() == criarContaB) {
 		
-			janela.dispose();
-			new Thread() {
-				public void run() {
-					new CriarConta(janela.getLocation());
-				}
-			}.start();
+			if(relogio.getHora() >= 10 && relogio.getHora() <= 15) {
+				janela.dispose();
+				new Thread() {
+					public void run() {
+						new CriarConta(janela.getLocation());
+					}
+				}.start();
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Desculpe, só podemos cadastrar contas entre as 10:00 e as 15:00hrs!");
 		}
 		
 		if(e.getSource() == caixaEletronicoB) {
 			
-			janela.dispose();
-			new Thread() {
-				public void run() {
-					new CaixaEletronico(janela.getLocation());
-				}
-			}.start();
+			if(relogio.getHora() >= 7 && relogio.getHora() <= 22) {
+				janela.dispose();
+				new Thread() {
+					public void run() {
+						new CaixaEletronico(janela.getLocation());
+					}
+				}.start();
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Desculpe, só podemos realizar operações entre as 7:00 e as 22:00hrs!");
 		}
 		
 		if(e.getSource() == funcionariosB) {
