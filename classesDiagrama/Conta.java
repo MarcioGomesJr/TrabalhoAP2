@@ -16,7 +16,7 @@ public abstract class Conta{
 	}
 	
 	public String getTipo() {
-		return "NÃ£o especificado";
+		return "Não especificado";
 	}
 
 	public double getSaldo() {
@@ -67,5 +67,9 @@ public abstract class Conta{
 		else {
 			return true;
 		}
+	}
+	
+	public String toString() {
+		return "Número: " + getNumero() + "\nSaldo: R$" + getSaldo() + "\nCliente: " + getCliente();
 	}
 }

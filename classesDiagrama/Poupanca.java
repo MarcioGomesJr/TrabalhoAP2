@@ -11,7 +11,7 @@ public class Poupanca extends Conta{
 	}
 
 	public void deposito(double valor, String senha) throws DepositoInvalidoException, SenhaIncorretaException {		
-		if(CriptografarSenha.criptografar(senha) == getSenha()){
+		if(CriptografarSenha.criptografar(senha).equals(getSenha())){
 			if(valor >0) {
 				setSaldo(getSaldo()+valor); 
 			}
@@ -25,23 +25,19 @@ public class Poupanca extends Conta{
 	}
 
 	public void saque(double valor, String senha) throws SaqueInvalidoException, SenhaIncorretaException {
-		if(CriptografarSenha.criptografar(senha) == getSenha()) {
-			if (valor < getSaldo()) {
+		if(CriptografarSenha.criptografar(senha).equals(getSenha())) {
+			if (valor <= getSaldo()) {
 				if(valor > 0) {
 					setSaldo(getSaldo() - valor);
-				}
-				else {
-					throw new SaqueInvalidoException();
-				}
 			}
+			else 
+				throw new SaqueInvalidoException("Por favor, insira um valor positivo.");
 		}
+			else 
+				throw new SaqueInvalidoException("Você estorou seu limite! O maior saque permitido para você no momento é de R$" + getSaldo());
+	}
 		else {
 			throw new SenhaIncorretaException();
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return "numero: " + getNumero() + "\nsaldo: " + getSaldo() + "\ncliente: " + getCliente() + "\nsenha: " + getSenha();
 	}
 }

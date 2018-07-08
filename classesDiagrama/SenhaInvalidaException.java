@@ -9,6 +9,6 @@ public class SenhaInvalidaException extends Exception {
 	Conta senha;
 	
 	public SenhaInvalidaException() {
-		super("Senha inv√°lida: A senha deve possuir pelo menos 8 caracteres");
+		super("Senha inv·lida: A senha deve possuir pelo menos 8 caracteres");
 	}
 }

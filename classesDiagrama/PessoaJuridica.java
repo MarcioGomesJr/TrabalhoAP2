@@ -35,6 +35,6 @@ public class PessoaJuridica extends Pessoa {
 	}
 
 	public String toString() {
-		return gerarID() + "\nNome: " + nome + "\nCNPJ: " + cnpj + "\nEndereco:\n" + getEndereco().toString();
+		return gerarID() + "\nNome: " + nome + "\nCNPJ: " + cnpj + "\nEndereço:\n" + getEndereco().toString();
 	}	
 }

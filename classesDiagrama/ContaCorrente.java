@@ -10,6 +10,7 @@ public class ContaCorrente extends Conta{
 		geraNumero++;
 		setNumero(geraNumero);
 		setSaldo(0);
+		this.limite = 200.0;
 		setCliente(cliente);
 		setSenha(senha);
 	}
@@ -18,16 +19,20 @@ public class ContaCorrente extends Conta{
 		this.limite = limite;
 	}
 	
+	public Poupanca getPoupanca() {
+		return contaPoupanca;
+	}
+	
 	public double getLimite() {
 		return limite;
 	}
 
 	public String toString() {
-		return contaPoupanca.toString() + "\nlimite: " + limite;
+		return super.toString() + "\nLimite: R$" + limite;
 	}
 
 	public void deposito(double valor, String senha) throws DepositoInvalidoException, SenhaIncorretaException {
-		if(CriptografarSenha.criptografar(senha) == getSenha()){
+		if(CriptografarSenha.criptografar(senha).equals(getSenha())){
 			if(valor >0) {
 				setSaldo(getSaldo()+valor); 
 			}
@@ -41,16 +46,17 @@ public class ContaCorrente extends Conta{
 	}
 
 	public void saque(double valor, String senha) throws SaqueInvalidoException, SenhaIncorretaException {
-		if(CriptografarSenha.criptografar(senha) == getSenha()) {
-			if (valor <= getSaldo()+limite) {
+		if(CriptografarSenha.criptografar(senha).equals(getSenha())) {
+			if (valor <= getSaldo() + limite) {
 				if(valor > 0) {
 					setSaldo(getSaldo() - valor);
-				}
-				else {
-					throw new SaqueInvalidoException();
-				}
 			}
+			else 
+				throw new SaqueInvalidoException("Por favor, insira um valor positivo.");
 		}
+			else 
+				throw new SaqueInvalidoException("Você estorou seu limite! O maior saque permitido para você no momento é de R$" + (getSaldo()+limite));
+	}
 		else {
 			throw new SenhaIncorretaException();
 		}

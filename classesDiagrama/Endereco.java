@@ -125,8 +125,8 @@ public class Endereco {
 		@Override
 		public String toString() {
 			return gerarID() + "\nTipe: " + tipe + "\nTipoDeLogradouro: " + tipoDeLogradouro
-					+ "\nLogradouro: " + logradouro + "\nNumero: " + numero + "\nBairro: " + bairro + "\nCidade: " + cidade
-					+ "\nEstado: " + estado + "\nCep: " + cep;
+					+ "\nLogradouro: " + logradouro + "\nNúmero: " + numero + "\nBairro: " + bairro + "\nCidade: " + cidade
+					+ "\nEstado: " + estado + "\nCEP: " + cep;
 		}
 		
 		protected boolean verificaCEP(String cep) {

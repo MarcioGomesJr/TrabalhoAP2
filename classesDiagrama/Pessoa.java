@@ -19,6 +19,14 @@ public abstract class Pessoa {
 	protected int getGeraid() {
 		return geraid;
 	}
+	
+	public String getCPF() {
+		return "";
+	}
+	
+	public String getCNPJ() {
+		return "";
+	}
 
 	protected String getId() {
 		return id;
@@ -41,6 +49,6 @@ public abstract class Pessoa {
 	}
 
 	public String toString() {
-		return "Id: " + id + "\nNome: " + nome + "\nEndereco:\n" + endereco.toString();
+		return "Id: " + id + "\nNome: " + nome + "\nEndereço:\n" + endereco.toString();
 	}
 }

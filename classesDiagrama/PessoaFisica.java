@@ -38,6 +38,6 @@ public class PessoaFisica extends Pessoa {
 	}
 
 	public String toString() {
-		return gerarID() + "\nNome: " + nome + "\nCPF: " + cpf + "\nEndereco:\n" + getEndereco().toString();
+		return gerarID() + "\nNome: " + nome + "\nCPF: " + cpf + "\nEndereço:\n" + getEndereco().toString();
 	}
 }
