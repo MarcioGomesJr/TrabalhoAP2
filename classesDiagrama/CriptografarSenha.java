@@ -33,29 +33,4 @@ public class CriptografarSenha {
 	public static String criptografar(String senha) {
 		return stringHexa(gerarHash(senha));
 	}
-	
-		public static void main(String[] args) {
-		  
-			Pessoa rafael = null;
-			
-			try {
-				rafael = new PessoaFisica("Rafael Nunes", new Endereco("Rua", "Rua 11", 123, "Centro", "Goiânia", "Goiás", "70100-100"), "123.456.789-10");
-				
-				JOptionPane.showMessageDialog(null, rafael.toString());
-			} catch (CpfCnpjInvalidoException | CepInvalidoException e) {
-				
-				JOptionPane.showMessageDialog(null, e.getMessage());	
-			}
-			
-			Conta conta;
-			
-			try {
-				conta = new Poupanca(rafael, "Hahfghdfgjndkkk");
-				
-				JOptionPane.showMessageDialog(null, conta.toString());
-			} catch (SenhaInvalidaException | NullPointerException e) {
-				
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			}
-	}
 }
