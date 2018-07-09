@@ -14,7 +14,7 @@ import classesDiagrama.Funcionario;
 
 public class AbaMenus extends JanelaBase implements ActionListener {
 	
-	//Botões para abrir os outros menus
+	//BotÃµes para abrir os outros menus
 	private JButton registrarFuncionarioB;
 	private JButton criarContaB;
 	private JButton caixaEletronicoB;
@@ -24,14 +24,14 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 	//Contrutor que monta a janela
 	public AbaMenus(Point posicao) {
 		
-		//Passando as especificações para a super classe
+		//Passando as especificaÃ§Ãµes para a super classe
 		super(600, 500, "Menu Principal", posicao);
 		
-		//Instanciando os botões e os adicionando ao action Listener
-		registrarFuncionarioB = new JButton("Registrar Funcionário");
+		//Instanciando os botÃµes e os adicionando ao action Listener
+		registrarFuncionarioB = new JButton("Registrar FuncionÃ¡rio");
 		criarContaB = new JButton("Criar Conta");
-		caixaEletronicoB = new JButton("Caixa Eletrônico");
-		funcionariosB = new JButton("Funcionários");
+		caixaEletronicoB = new JButton("Caixa EletrÃ´nico");
+		funcionariosB = new JButton("FuncionÃ¡rios");
 		contasB = new JButton("Contas");
 		
 		registrarFuncionarioB.addActionListener(this);
@@ -70,7 +70,7 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		gb.gridy = 6;		
 		campos.add(contasB, gb);
 		
-		//Espaços para organizar melhor
+		//EspaÃ§os para organizar melhor
 		gb.weighty = 10;
 		gb.gridx = 0;
 		gb.gridy = 7;
@@ -80,11 +80,11 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		gb.gridy = 7;
 		campos.add(espacos[1], gb);
 		
-		//Atualizando os paineis e iniciando o relógio
+		//Atualizando os paineis e iniciando o relÃ³gio
 		iniciar();
 	}
 	
-	//Controla o comportamento dos botões
+	//Controla o comportamento dos botÃµes
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == registrarFuncionarioB) {
@@ -99,7 +99,7 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		
 		if(e.getSource() == criarContaB) {
 		
-			if(relogio.getHora() >= 10 && relogio.getHora() <= 15) {
+			if(relogio.getHora() >= 10 && relogio.getHora() < 15) {
 				janela.dispose();
 				new Thread() {
 					public void run() {
@@ -108,12 +108,12 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 				}.start();
 			}
 			else
-				JOptionPane.showMessageDialog(null, "Desculpe, só podemos cadastrar contas entre as 10:00 e as 15:00hrs!");
+				JOptionPane.showMessageDialog(null, "Desculpe, sÃ³ podemos cadastrar contas entre as 10:00 e as 15:00hrs!");
 		}
 		
 		if(e.getSource() == caixaEletronicoB) {
 			
-			if(relogio.getHora() >= 7 && relogio.getHora() <= 22) {
+			if(relogio.getHora() >= 7 && relogio.getHora() < 22) {
 				janela.dispose();
 				new Thread() {
 					public void run() {
@@ -122,7 +122,7 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 				}.start();
 			}
 			else
-				JOptionPane.showMessageDialog(null, "Desculpe, só podemos realizar operações entre as 7:00 e as 22:00hrs!");
+				JOptionPane.showMessageDialog(null, "Desculpe, sÃ³ podemos realizar operaÃ§Ãµes entre as 7:00 e as 22:00hrs!");
 		}
 		
 		if(e.getSource() == funcionariosB) {
