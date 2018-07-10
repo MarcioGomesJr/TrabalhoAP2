@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 //Classes que monta a janela para a criação de contas
 //Rafael Nunes Santana
-
+//Eduardo Silvestre P. Goncalves
 public class CriarConta extends JanelaBase implements ActionListener {
 
 	//Criando Botões

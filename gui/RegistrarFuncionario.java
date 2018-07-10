@@ -17,6 +17,7 @@ import classesDiagrama.Funcionario;
 
 //Classe que monta a janela para registrar funcionÃ¡rios
 //Rafael Nunes Santana
+//Eduardo Silvestre P. Goncalves
 
 public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 
@@ -195,8 +196,10 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 			if(e.getSource() == registrarB) {
 				try {
 					Funcionario funcionario = new Funcionario(fdNome.getText(),new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdCpf.getText(),fdCargo.getText());
-					
-					BancoDeDados.verificarERegistrar(funcionario);
+					if	(BancoDeDados.verificarERegistrar(funcionario)){
+						JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+					}
+		
 					
 				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(null,"Por favor digite um número em \"Número\"");

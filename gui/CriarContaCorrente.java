@@ -14,6 +14,7 @@ import classesDiagrama.*;
 
 //Classes que monta a janela para criar contas correntes
 //Rafael Nunes Santana
+//Eduardo Silvestre Pires Goncalves
 
 public class CriarContaCorrente extends JanelaBase implements ActionListener {
 

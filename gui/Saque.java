@@ -33,6 +33,8 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 	private JRadioButton poupanca;
 	
 	//Passando as especificações para a super classe
+	//Eduardo Silvestre P. Goncalves
+	//Eduardo Silvestre P. Goncalves
 	public Saque(Point posicao) {
 		
 			super(600, 500, "Saque", posicao);

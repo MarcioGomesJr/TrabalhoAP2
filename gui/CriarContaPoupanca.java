@@ -21,6 +21,7 @@ import classesDiagrama.SenhaInvalidaException;
 
 //Classes que monta a janela para criar contas de poupança
 //Rafael Nunes Santana
+//Eduardo Silvestre P. Goncalves
 
 public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 

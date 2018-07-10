@@ -33,6 +33,7 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 	private JRadioButton poupanca;
 	
 	public Deposito(Point posicao) {
+		//Eduardo Silvestre P. Goncalves
 		
 		//Passando as especificações para a super classe
 		super(600, 500, "Deposito", posicao);
