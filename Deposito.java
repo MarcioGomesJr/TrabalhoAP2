@@ -9,15 +9,12 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import classesDiagrama.ContaCorrente;
-import classesDiagrama.DepositoInvalidoException;
 import classesDiagrama.PessoaFisica;
 import classesDiagrama.PessoaJuridica;
-import classesDiagrama.SaqueInvalidoException;
-import classesDiagrama.SenhaIncorretaException;
 
 public class Deposito extends JanelaBase implements ActionListener, ItemListener {
 
@@ -36,6 +33,7 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 	private JRadioButton poupanca;
 	
 	public Deposito(Point posicao) {
+		//Eduardo Silvestre P. Goncalves
 		
 		//Passando as especificações para a super classe
 		super(600, 500, "Deposito", posicao);
@@ -134,62 +132,25 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 				}
 			}.start();
 		}
+		
 		if(e.getSource() == depositarB) {
-			if(e.getSource() == depositarB) {
 				
-				if(PessoaFisica.verificaCPF(fdId.getText())) {
-						for(ContaCorrente c : BancoDeDados.contasCorrente){
-							PessoaFisica cliente = (PessoaFisica) c.getCliente();
-							if(cliente.getCPF().equals(this.fdId.getText())){
-								try {
-									c.deposito(Double.parseDouble(fdValor.getText()), fdSenha.getText());
-									} catch (DepositoInvalidoException e1) {
-										System.out.println("Deposito INVALIDO");
-									} catch (SenhaIncorretaException e1) {
-										System.out.println("Senha INCORRETA");
-							
-									} catch (NumberFormatException  e1) {
-								
-										System.out.println("O formato do numero e' inva'lido");
-									}	
-								}	
-							
-							}
-						
-						
-						}
-					
-					}	
-					else{
-					if(PessoaJuridica.verificaCNPJ(fdId.getText())) {
-						for(ContaCorrente c : BancoDeDados.contasCorrente){
-							PessoaJuridica cliente = (PessoaJuridica) c.getCliente();
-							if(cliente.getCNPJ().equals(this.fdId.getText())){
-								try {
-									c.deposito(Double.parseDouble(fdValor.getText()), fdSenha.getText());
-									} catch (DepositoInvalidoException e1) {
-										System.out.println("Deposito INVALIDO");
-									} catch (SenhaIncorretaException e1) {
-										System.out.println("Senha INCORRETA");
-							
-									} catch (NumberFormatException  e1) {
-								
-										System.out.println("O formato do numero e' inva'lido");
-									}	
-								}	
-							
-							}
+				if(PessoaFisica.verificaCPF(fdId.getText())) 
+					if(corrente.isSelected())
+						Operacoes.correntePessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
+					else
+						Operacoes.poupancaPessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
 
-				
-					}
-					else {
-						
-						System.out.println("O CPF ou o CNPJ e' inva'lido");
-					}
+				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))
+					if(corrente.isSelected())
+						Operacoes.correntePessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
+					else
+						Operacoes.poupancaPessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
+
+				else 	
+					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ é inválido");
 				}
-			
 			}
-		}
 	
 
 	@Override

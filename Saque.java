@@ -9,14 +9,12 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import classesDiagrama.ContaCorrente;
 import classesDiagrama.PessoaFisica;
 import classesDiagrama.PessoaJuridica;
-import classesDiagrama.SaqueInvalidoException;
-import classesDiagrama.SenhaIncorretaException;
 
 public class Saque extends JanelaBase implements ActionListener, ItemListener {
 
@@ -35,6 +33,8 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 	private JRadioButton poupanca;
 	
 	//Passando as especificações para a super classe
+	//Eduardo Silvestre P. Goncalves
+	//Eduardo Silvestre P. Goncalves
 	public Saque(Point posicao) {
 		
 			super(600, 500, "Saque", posicao);
@@ -135,37 +135,20 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			}
 			if(e.getSource() == depositarB) {
 				
-				if(PessoaFisica.verificaCPF(fdId.getText())) {
-						for(ContaCorrente c : BancoDeDados.contasCorrente){
-							PessoaFisica cliente = (PessoaFisica) c.getCliente();
-							if(cliente.getCPF().equals(this.fdId.getText())){
-								try {
-									c.saque(Double.parseDouble(fdValor.getText()), fdSenha.getText());
-									} catch (SaqueInvalidoException e1) {
-										System.out.println("Saque INVALIDO");
-									}catch (SenhaIncorretaException e1) {
-										System.out.println("Senha INCORRETA");
-							
-									} catch (NumberFormatException  e1) {
-								
-										System.out.println("O formato do numero e' inva'lido");
-									}	
-								}	
-							
-							}
-						
-						
-						}
-					
-					}	
-					else{
-					if(PessoaJuridica.verificaCNPJ(fdId.getText())) {
+				if(PessoaFisica.verificaCPF(fdId.getText())) 
+					if(corrente.isSelected())
+						Operacoes.correntePessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+					else
+						Operacoes.poupancaPessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 
-				
-					}
-					else {
-						
-					}
+				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))
+					if(corrente.isSelected())
+						Operacoes.correntePessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+					else
+						Operacoes.poupancaPessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
+
+				else 	
+					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ é inválido");
 				}
 			
 			}
