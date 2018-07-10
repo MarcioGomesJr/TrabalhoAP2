@@ -6,13 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+//Classe para criar uma barra de rolagem
 public class ScrollPane extends JFrame {
 	
 	private static final long serialVersionUID = 5379780688992614540L;
 	
 	JTextArea texto;
 	JScrollPane scroll;
+        JScrollPane scrollpane = new JScrollPane(texto);
+        
 	
+        //Metodo construtor q passa a configuracao da janela
 	public ScrollPane(String nome, Point posicao, String conteudo) {
 		
 		setVisible(true);
@@ -27,4 +31,6 @@ public class ScrollPane extends JFrame {
 		
 		add(scroll);
 	}
-}
+        
+            
+        }

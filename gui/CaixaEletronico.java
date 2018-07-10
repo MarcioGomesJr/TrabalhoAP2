@@ -7,24 +7,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-//Classes que monta a janela para realizar operaÁıes banc·rias
+//Classes que monta a janela para realizar opera√ß√µes banc√°rias
 //Rafael Nunes Santana
 
 public class CaixaEletronico extends JanelaBase implements ActionListener {
 
-	//Declarando botıes
+	//Declarando bot√µes
 	private JButton voltarB;
 	private JButton saqueB;
 	private JButton depositoB;
 	
 	public CaixaEletronico(Point posicao) {
 
-		super(600, 500, "Caixa EletrÙnico", posicao);
+		super(600, 500, "Caixa Eletr√¥nico", posicao);
 		
-		//Instanciando Botıes e os adicionando ao ActionListener
+		//Instanciando Bot√µes e os adicionando ao ActionListener
 		voltarB = new JButton("<- Voltar");
 		saqueB = new JButton("Saque");
-		depositoB = new JButton("DepÛsito");
+		depositoB = new JButton("Dep√≥sito");
 		
 		voltarB.addActionListener(this);
 		saqueB.addActionListener(this);
@@ -66,10 +66,12 @@ public class CaixaEletronico extends JanelaBase implements ActionListener {
 		
 		gb.gridx = 2;
 		campos.add(espacos[2], gb);
-		
-		iniciar();
+	
+                
+		iniciar();//carrega os paineis na janela e inicia o rel√≥gio
 	}
-
+        
+        //Controla o comportamento dos bot√µes
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

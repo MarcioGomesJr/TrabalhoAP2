@@ -1,5 +1,8 @@
 package gui;
 
+//Autor: Eduardo Silvestre
+//Classe que cria a janela para fazer o saque
+
 import java.awt.GridBagConstraints;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -17,29 +20,30 @@ import classesDiagrama.PessoaFisica;
 import classesDiagrama.PessoaJuridica;
 
 public class Saque extends JanelaBase implements ActionListener, ItemListener {
-
+        //Declarando labels
 	private JLabel lblId;
 	private JLabel lblSenha;
 	private JLabel lblValor;
 	
+        //Declarando campos de texto
 	private JTextField fdId;
 	private JTextField fdSenha;
 	private JTextField fdValor;
 	
+        //Declarando botões
 	private JButton depositarB;
 	private JButton voltarB;
 	
+        //Declarando Botões de escolha
 	private JRadioButton corrente;
 	private JRadioButton poupanca;
 	
-	//Passando as especifica��es para a super classe
-	//Eduardo Silvestre P. Goncalves
-	//Eduardo Silvestre P. Goncalves
+	//Passando as especificações para a super classe
 	public Saque(Point posicao) {
 		
 			super(600, 500, "Saque", posicao);
 			
-			//Instanciando os componentes e adicionando os bot�es ao Action Listener
+			//Instanciando os componentes e adicionando os bot�es ao Action Listener
 			lblId = new JLabel("CPF/CNPJ: ");
 			lblSenha = new JLabel("Senha: ");
 			lblValor = new JLabel("Valor: ");
@@ -55,7 +59,7 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			voltarB.addActionListener(this);
 			
 			corrente = new JRadioButton("Conta Corrente", true);
-			poupanca = new JRadioButton("Conta Poupan�a", false);
+			poupanca = new JRadioButton("Conta Poupança", false);
 			
 			corrente.addItemListener(this);
 			poupanca.addItemListener(this);
@@ -117,10 +121,11 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 			gb.gridy = 5;
 			campos.add(depositarB, gb);
 			
-			//Atualizando os paineis e iniciando o rel�gio
+			//Atualizando os paineis e iniciando o relógio
 			iniciar();
 		}
-
+                
+                //Controla o comportamento dos botões
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
@@ -134,24 +139,26 @@ public class Saque extends JanelaBase implements ActionListener, ItemListener {
 				}.start();
 			}
 			if(e.getSource() == depositarB) {
-				
-				if(PessoaFisica.verificaCPF(fdId.getText())) 
+				//
+				if(PessoaFisica.verificaCPF(fdId.getText())) //Metodo de verificação de cpf de PessoaFisica
+                                                                             //Retorna uma String de um JTextComponent
 					if(corrente.isSelected())
 						Operacoes.correntePessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 					else
 						Operacoes.poupancaPessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 
-				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))
+				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))//Metodo de verificação de cnpj de PessoaJuridica
 					if(corrente.isSelected())
 						Operacoes.correntePessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 					else
 						Operacoes.poupancaPessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), true);
 
 				else 	
-					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ � inv�lido");
+					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ é inválido");
 				}
 			
 			}
+                //Controla o comportamento dos botões de escolha
 		@Override
 		public void itemStateChanged(ItemEvent e) {
 			

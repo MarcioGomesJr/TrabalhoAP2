@@ -13,23 +13,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-//Classe que cria uma janela básica com um painel para componentes e um com o relógio
+//Classe que cria uma janela bÃ¡sica com um painel para componentes e um com o relÃ³gio
 //Deve ser herdada pelos outras classes que definem janelas no pacote
+
 //Rafael Nunes Santana
 
 public class JanelaBase implements Runnable {
 
-	//Relógio que será usado pela janela
+	//RelÃ³gio que serÃ¡ usado pela janela
 	protected Relogio relogio;
 	
-	//Labels onde serão mostardas a hora e a data
+	//Labels onde serÃ£o mostardas a hora e a data
 	protected JLabel hora;
 	protected JLabel data;
 	
-	//Label vazia para organização
+	//Label vazia para organizaï¿½ï¿½o
 	protected JLabel[] espacos;
 	
-	//Paineis separados para os campos e o relógio
+	//Paineis separados para os campos e o relÃ³gio
 	protected JPanel campos;
 	protected JPanel relogioP;
 	
@@ -42,13 +43,13 @@ public class JanelaBase implements Runnable {
 	//Contrutor que monta a janela especificanco seu tamanho e nome da label dos componentes
 	public JanelaBase(int largura, int altura, String nome, Point posicao) {
 		
-		//Vetor de espaçoes vazios para organizar as labels
+		//Vetor de espaÃ§os vazios para organizar as labels
 		espacos = new JLabel[6];
 				
 		for(int i = 0; i < espacos.length; i++)
 			espacos[i] = new JLabel("");
 						
-		//Instanciando as labels do relógio e o relógio
+		//Instanciando as labels do relï¿½gio e o relï¿½gio
 		relogio = new Relogio();
 		data = new JLabel();
 		hora = new JLabel();
@@ -56,7 +57,7 @@ public class JanelaBase implements Runnable {
 		//Dimenson para dimensionar os paineis
 		Dimension tamanho = new Dimension(largura, altura);
 				
-		//Definindo os padrões básicos da janela, como tamanho, posição inicial, nome, visibilidade, e possibilidade de fechar
+		//Definindo os padrÃµes bÃ¡sicos da janela, como tamanho, posiÃ§Ã£o inicial, nome, visibilidade, e possibilidade de fechar
 		janela = new JFrame("Banco RENM");
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +74,7 @@ public class JanelaBase implements Runnable {
 		relogioP = new JPanel();
 		relogioP.setBorder(BorderFactory.createTitledBorder("Data e Hora"));
 		
-		//Iniciando o GidBagConstraints para organizar os paineis e setando suas dimenções
+		//Iniciando o GidBagConstraints para organizar os paineis e setando suas dimenÃ§Ãµes
 		campos.setLayout(new GridBagLayout());
 		tamanho.height = altura - 90;
 		campos.setPreferredSize(tamanho);
@@ -106,19 +107,19 @@ public class JanelaBase implements Runnable {
 		relogioP.add(espacos[5], gb);
 	}
 
-	//Essa função deve ser chamada no fim do contrutor de toda classe que herdar dela.
-	//Ela carrega os paineis na janela e inicia o relógio
+	//Essa funÃ§Ã£o deve ser chamada no fim do contrutor de toda classe que herdar dela.
+	//Ela carrega os paineis na janela e inicia o relÃ³gio
 	protected void iniciar() {
 						
 		//Adicionando os paineis (e seus componentes) na janela principal
 		container.add(campos, BorderLayout.NORTH);
 		container.add(relogioP, BorderLayout.SOUTH);
 						
-		//Inicia o relógio
+		//Inicia o relÃ³gio
 		run();
 	}
 	
-	//Método que atualiza o relógio a cada segundo
+	//MÃ©todo que atualiza o relÃ³gio a cada segundo
 	public void run() {
 		
 		while(true) {

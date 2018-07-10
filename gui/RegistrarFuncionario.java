@@ -17,7 +17,6 @@ import classesDiagrama.Funcionario;
 
 //Classe que monta a janela para registrar funcionários
 //Rafael Nunes Santana
-//Eduardo Silvestre P. Goncalves
 
 public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 
@@ -52,7 +51,7 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 		public RegistrarFuncionario(Point posicao) {
 			
 			//Passando as especificações para a super classe
-			super(600, 500, "Registrar Funcion�rio", posicao);
+			super(600, 500, "Registrar Funcionário", posicao);
 			
 			//Instancioando componentes
 			lblNome = new JLabel("Nome: ");
@@ -60,8 +59,8 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 			lblCargo = new JLabel("Cargo: ");
 			lblTipoDeLogradouro = new JLabel("Tipo de Logradouro: ");
 			lblLogradouro = new JLabel("Logradouro: ");
-			lblNumero = new JLabel("N�mero: ");
-			lblBairro = new JLabel("Bairo: ");
+			lblNumero = new JLabel("Número: ");
+			lblBairro = new JLabel("Bairro: ");
 			lblCidade = new JLabel("Cidade: ");
 			lblEstado = new JLabel("Estado: ");
 			lblCep = new JLabel("CEP: ");
@@ -181,7 +180,7 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 			//Atualizando os paineis e iniciando o relógio
 			iniciar();
 		}
-
+                //Controla o comportamento dos botões
 		public void actionPerformed(ActionEvent e) {
 			
 			if(e.getSource() == voltarB) {
@@ -194,17 +193,17 @@ public class RegistrarFuncionario extends JanelaBase implements ActionListener {
 				}.start();
 			}
 			if(e.getSource() == registrarB) {
-				try {
+				try {//codigo a ser executado
 					Funcionario funcionario = new Funcionario(fdNome.getText(),new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdCpf.getText(),fdCargo.getText());
-					if	(BancoDeDados.verificarERegistrar(funcionario)){
-						JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
-					}
-		
 					
+					BancoDeDados.verificarERegistrar(funcionario);//Acessando metodo da classe Banco de dados
+                                        //verifica se o cpf do funcionario ja existe no banco de dados, se nao, é criado novo funcionario
+				
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,"Por favor digite um n�mero em \"N�mero\"");
+					JOptionPane.showMessageDialog(null,"Por favor digite um número em \"Número\"");
+                                //Cada catch tem sua devida classe
 				} catch (CpfCnpjInvalidoException e1) {
-					JOptionPane.showMessageDialog(null,e1.getMessage());
+					JOptionPane.showMessageDialog(null,e1.getMessage());//tratamento de exceção
 				} catch (CepInvalidoException e1) {
 					JOptionPane.showMessageDialog(null,e1.getMessage());
 				}

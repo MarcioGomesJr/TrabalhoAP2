@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-//Classes que monta a janela para a cria��o de contas
+//Classes que monta a janela para a criação de contas
 //Rafael Nunes Santana
-//Eduardo Silvestre P. Goncalves
+
 public class CriarConta extends JanelaBase implements ActionListener {
 
-	//Criando Bot�es
+	//Criando Botões
 	private JButton contaCorrenteB;
 	private JButton contaPoupancaB;
 	private JButton voltarB;
@@ -21,7 +21,7 @@ public class CriarConta extends JanelaBase implements ActionListener {
 
 		super(600, 500, "Criar conta", posicao);
 		
-		//Instanciando Bot�es e os adicionando ao ActionListener
+		//Instanciando Botões e os adicionando ao ActionListener
 		contaCorrenteB = new JButton("Criar Conta Corrente");
 		contaPoupancaB = new JButton("Criar Conta Poupanca");
 		voltarB = new JButton("<- Voltar");
@@ -69,10 +69,11 @@ public class CriarConta extends JanelaBase implements ActionListener {
 		
 		iniciar();
 	}
-
+        
+        //Controla o comportamento dos botões
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		//Ação botao voltar
 		if(e.getSource() == voltarB) {
 			
 			janela.dispose();
@@ -83,7 +84,7 @@ public class CriarConta extends JanelaBase implements ActionListener {
 			}.start();
 
 		}
-		
+		//Ação botao Conta Corrente
 		if(e.getSource() == contaCorrenteB) {
 			
 			janela.dispose();
@@ -93,7 +94,7 @@ public class CriarConta extends JanelaBase implements ActionListener {
 				}
 			}.start();
 		}
-		
+		//Ação botao Conta Poupança
 		if(e.getSource() == contaPoupancaB) {
 			
 			janela.dispose();

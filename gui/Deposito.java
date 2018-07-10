@@ -1,5 +1,8 @@
 package gui;
 
+//Autor: Eduardo Silvestre
+//Classe que cria a janela para fazer deposito
+
 import java.awt.GridBagConstraints;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -33,12 +36,11 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 	private JRadioButton poupanca;
 	
 	public Deposito(Point posicao) {
-		//Eduardo Silvestre P. Goncalves
 		
-		//Passando as especificações para a super classe
+		//Passando as especificaÃ§Ãµes para a super classe
 		super(600, 500, "Deposito", posicao);
 		
-		//Instanciando os componentes e adicionando os botões ao Action Listener
+		//Instanciando os componentes e adicionando os botÃµes ao Action Listener
 		lblId = new JLabel("CPF/CNPJ: ");
 		lblSenha = new JLabel("Senha: ");
 		lblValor = new JLabel("Valor: ");
@@ -54,7 +56,7 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 		voltarB.addActionListener(this);
 		
 		corrente = new JRadioButton("Conta Corrente", true);
-		poupanca = new JRadioButton("Conta Poupança", false);
+		poupanca = new JRadioButton("Conta Poupanï¿½a", false);
 		
 		corrente.addItemListener(this);
 		poupanca.addItemListener(this);
@@ -116,10 +118,10 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 		gb.gridy = 5;
 		campos.add(depositarB, gb);
 		
-		//Atualizando os paineis e iniciando o relógio
+		//Atualizando os paineis e iniciando o relÃ³gio
 		iniciar();
 	}
-
+        //Controla o comportamento dos botÃµes
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -135,24 +137,25 @@ public class Deposito extends JanelaBase implements ActionListener, ItemListener
 		
 		if(e.getSource() == depositarB) {
 				
+                                //Verifica se o que foi digitado bate com o padrao do CPF/CNPJ
 				if(PessoaFisica.verificaCPF(fdId.getText())) 
-					if(corrente.isSelected())
+					if(corrente.isSelected())//Verifica se existe uma pessoa e dados com o mesmo CPF/CNPJ que foi digitado
 						Operacoes.correntePessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
 					else
 						Operacoes.poupancaPessoaFisica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
-
+                                //Verifica se o que foi digitado bate com o padrao do CNPJ/cpf           
 				else if(PessoaJuridica.verificaCNPJ(fdId.getText()))
-					if(corrente.isSelected())
+					if(corrente.isSelected())//Verifica se existe uma pessoa e dados com o mesmo CPF/CNPJ que foi digitado
 						Operacoes.correntePessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
 					else
 						Operacoes.poupancaPessoaJuridica(fdId.getText(), fdSenha.getText(), Double.parseDouble(fdValor.getText()), false);
 
 				else 	
-					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ é inválido");
+					JOptionPane.showMessageDialog(null, "O CPF ou o CNPJ Ã© invÃ¡lido");
 				}
 			}
 	
-
+        //Controla o comportamento dos botÃµes de escolha                
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		

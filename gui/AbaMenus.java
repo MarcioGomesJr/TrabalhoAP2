@@ -7,13 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import classesDiagrama.ContaCorrente;
 import classesDiagrama.Funcionario;
-import classesDiagrama.Poupanca;
 
 //Classes que monta a janela do menu principal
 //Rafael Nunes Santana
-//Eduardo Silvestre P. Goncalves
 
 public class AbaMenus extends JanelaBase implements ActionListener {
 	
@@ -101,8 +98,8 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		}
 		
 		if(e.getSource() == criarContaB) {
-		
-			if(relogio.getHora() >= 10 && relogio.getHora() < 15) {
+                        //Limita o horario para criaçao de contas e determinadas açoes no caixa eletronico
+			if(relogio.getHora() >= 10 && relogio.getHora() <= 15) {
 				janela.dispose();
 				new Thread() {
 					public void run() {
@@ -129,10 +126,12 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 		}
 		
 		if(e.getSource() == funcionariosB) {
+			//concatenação de string
+			StringBuilder funcionarios = new StringBuilder("");//permite criar e manipular dados de Strings dinamicamente, ou seja, podem criar variáveis de String modificáveis.
 			
-			StringBuilder funcionarios = new StringBuilder("");
 			for(Funcionario	funcionario : BancoDeDados.funcionarios) {
-				funcionarios.append(funcionario.toString());
+				funcionarios.append(funcionario.toString());//metodo append
+                                //aloca novas strings concatenadas para o mesmo objeto
 				funcionarios.append("\n\n");
 			}
 			
@@ -143,32 +142,7 @@ public class AbaMenus extends JanelaBase implements ActionListener {
 				}
 			}.start();
 		}
-		if(e.getSource() == contasB) {
-			
-			StringBuilder contasCorrente = new StringBuilder("");
-			StringBuilder contasPoupanca = new StringBuilder("");
-			
-			for(ContaCorrente	contaCorrente : BancoDeDados.contasCorrente) {
-				contasCorrente.append(contaCorrente.toString());
-				contasCorrente.append("\n\n");
-			}
-			for(Poupanca	contaPoupanca : BancoDeDados.poupancas) {
-				contasPoupanca.append(contaPoupanca.toString());
-				contasCorrente.append("\n\n");
-			}
-			
-
-			
-			new Thread() {
-				public void run() {
-					//new ScrollPane("ContaCorrente e Poupanca" ,janela.getLocation(), contasCorrente.toString(),contasPoupanca.toString());
-					JOptionPane.showMessageDialog(null, contasCorrente);
-					JOptionPane.showMessageDialog(null, contasPoupanca);
-				}
-			}.start();
-		}
 	}
-	
 	
 	//Inicializa o app pelos menus
 	public static void main(String args[]) {

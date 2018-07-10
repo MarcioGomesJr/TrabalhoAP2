@@ -19,12 +19,12 @@ import classesDiagrama.PessoaJuridica;
 import classesDiagrama.Poupanca;
 import classesDiagrama.SenhaInvalidaException;
 
-//Classes que monta a janela para criar contas de poupança
+//Classes que monta a janela para criar contas de poupanÃ§a
 //Rafael Nunes Santana
-//Eduardo Silvestre P. Goncalves
 
 public class CriarContaPoupanca extends JanelaBase implements ActionListener {
-
+        
+        //Declarando labels
 	private JLabel lblNome;
 	private JLabel lblId;
 	private JLabel lblTipoDeLogradouro;
@@ -48,21 +48,21 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 	private JTextField fdCep;
 	private JTextField fdSenha;
 	
-	//Declarando botões
+	//Declarando botï¿½es
 	private JButton criarB;
 	private JButton voltarB;
 	
 	public CriarContaPoupanca(Point posicao) {
 		
-		//Passando as especificações para a super classe
-		super(600, 500, "Criar Conta Poupança", posicao);
+		//Passando as especificaÃ§Ãµes para a super classe
+		super(600, 500, "Criar Conta PoupanÃ§a", posicao);
 		
-		//Instanciando os componentes e adicionando os botões ao Action Listener
+		//Instanciando os componentes e adicionando os botÃµes ao Action Listener
 		lblNome = new JLabel("Nome: ");
 		lblId = new JLabel("CPF/CNPJ: ");
 		lblTipoDeLogradouro = new JLabel("Tipo de Logradouro: ");
 		lblLogradouro = new JLabel("Logradouro: ");
-		lblNumero = new JLabel("Número: ");
+		lblNumero = new JLabel("NÃºmero: ");
 		lblBairro = new JLabel("Bairo: ");
 		lblCidade = new JLabel("Cidade: ");
 		lblEstado = new JLabel("Estado: ");
@@ -179,10 +179,10 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 
 		campos.add(criarB, gb);
 		
-		//Atualizando os paineis e iniciando o relógio
+		//Atualizando os paineis e iniciando o relÃ³gio
 		iniciar();
 	}
-
+        //Controla o comportamento dos botÃµes
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == voltarB) {
@@ -201,20 +201,22 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 			Poupanca conta;
 			
 			if(PessoaFisica.verificaCPF(fdId.getText())) {
-				
-				try {
-					
+				//Verifica se o que foi digitado bate com o padrÃ£o do CPF
+				try {//codigo a ser executado
+					//Verifica no banco de dados se existe uma pessoa juridica com o mesmo CNPJ que foi digitado 
 					if(!BancoDeDados.verificarPessoaJuridica(fdId.getText())) {
 
 						pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 						conta = new Poupanca(pessoa, fdSenha.getText());
+                                                //Se o CPF nao constar no banco de dados Ã© criado uma nova pessoa fÃ­sica,poupanÃ§a com os dados fornecidos
 						BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
 						BancoDeDados.poupancas.add(conta);
-						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
+                                                //Adiciona tudo ao banco de dados
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informaÃ§Ãµes:\n" + conta.toString());
 					}
-					
+					//tratando exceÃ§Ãµes
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+					JOptionPane.showMessageDialog(null, "Por favor digite um nÃºmero em \"NÃºmero\"");
 				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
@@ -224,16 +226,18 @@ public class CriarContaPoupanca extends JanelaBase implements ActionListener {
 				try {
 					
 					if(!BancoDeDados.verificarPessoaJuridica(fdId.getText())) {
-
+                                        //Verifica se o que foi digitado bate com o padrÃ£o do CNPJ
 						pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 						conta = new Poupanca(pessoa, fdSenha.getText());
+                                                //Se o CNPJ nao constar no banco de dados Ã© criado uma nova pessoa juridica,poupanÃ§a com os dados fornecidos
 						BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
 						BancoDeDados.poupancas.add(conta);
-						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
+                                                //Adiciona tudo ao banco de dados
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informaÃ§Ãµes:\n" + conta.toString());
 					}
-					
+				//tratando exceÃ§Ãµes	
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+					JOptionPane.showMessageDialog(null, "Por favor digite um nÃºmero em \"NÃºmero\"");
 				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}

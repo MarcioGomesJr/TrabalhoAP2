@@ -14,7 +14,6 @@ import classesDiagrama.*;
 
 //Classes que monta a janela para criar contas correntes
 //Rafael Nunes Santana
-//Eduardo Silvestre Pires Goncalves
 
 public class CriarContaCorrente extends JanelaBase implements ActionListener {
 
@@ -42,22 +41,22 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 	private JTextField fdCep;
 	private JTextField fdSenha;
 	
-	//Declarando botões
+	//Declarando botÃµes
 	private JButton criarB;
 	private JButton voltarB;
 	
 	public CriarContaCorrente(Point posicao) {
 		
-		//Passando as especificações para a super classe
+		//Passando as especificaÃ§Ãµes para a super classe
 		super(600, 500, "Criar Conta Corrente", posicao);
 		
-		//Instanciando os componentes e adicionando os botões ao Action Listener
+		//Instanciando os componentes e adicionando os botÃµes ao Action Listener
 		lblNome = new JLabel("Nome: ");
 		lblId = new JLabel("CPF/CNPJ: ");
 		lblTipoDeLogradouro = new JLabel("Tipo de Logradouro: ");
 		lblLogradouro = new JLabel("Logradouro: ");
-		lblNumero = new JLabel("Número: ");
-		lblBairro = new JLabel("Bairo: ");
+		lblNumero = new JLabel("NÃºmero: ");
+		lblBairro = new JLabel("Bairro: ");
 		lblCidade = new JLabel("Cidade: ");
 		lblEstado = new JLabel("Estado: ");
 		lblCep = new JLabel("CEP: ");
@@ -173,10 +172,10 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 
 		campos.add(criarB, gb);
 		
-		//Atualizando os paineis e iniciando o relógio
+		//Atualizando os paineis e iniciando o relÃ³gio
 		iniciar();
 	}
-
+        //Controla o comportamento dos botÃµes
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == voltarB) {
@@ -195,20 +194,25 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 			ContaCorrente conta;
 			
 			if(PessoaFisica.verificaCPF(fdId.getText())) {
+                        //Verifica se o que foi digitado bate com o padrÃ£o do CPF
 				
 				try {
-					if(!BancoDeDados.verificarPessoaFisica(fdId.getText())) {
-
+                                    //Verifica no banco de dados se existe uma pessoa com o mesmo CPF que foi digitado 
+					if(!BancoDeDados.verificarPessoaFisica(fdId.getText())){
+                                           
+                                                //Retorna uma string de um JTextComponent
 						pessoa = new PessoaFisica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 						conta = new ContaCorrente(pessoa, fdSenha.getText());
+                                                //Se o CPF nao constar no banco de dados Ã© criado uma nova pessoa fÃ­sica,conta corrente com os dados fornecidos
 						BancoDeDados.pessoasFisicas.add((PessoaFisica) pessoa);
 						BancoDeDados.contasCorrente.add(conta);
 						BancoDeDados.poupancas.add(conta.getPoupanca());
-						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
+                                                //Adiciona tudo ao banco de dados
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informaÃ§Ãµes:\n" + conta.toString());
 					}
-					
+				//tratando exceÃ§Ãµes	
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+					JOptionPane.showMessageDialog(null, "Por favor digite um nÃºmero em \"NÃºmero\"");
 				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
@@ -217,17 +221,19 @@ public class CriarContaCorrente extends JanelaBase implements ActionListener {
 				
 				try {		
 					if(!BancoDeDados.verificarPessoaJuridica(fdId.getText())) {
-						
-						pessoa = new PessoaJuridica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
+                                                //Verifica se o que foi digitado bate com o padrÃ£o do CNPJ
+                                        	pessoa = new PessoaJuridica(fdNome.getText(), new Endereco(fdTipoDeLogradouro.getText(),fdLogradouro.getText(),Integer.parseInt(fdNumero.getText()),fdBairro.getText(),fdCidade.getText(),fdEstado.getText(),fdCep.getText()),fdId.getText());
 						conta = new ContaCorrente(pessoa, fdSenha.getText());
+                                                //Se o CNPJ nao constar no banco de dados Ã© criado uma nova pessoa juridica,conta corrente com os dados fornecidos
 						BancoDeDados.pessoasJuridicas.add((PessoaJuridica) pessoa);
 						BancoDeDados.contasCorrente.add(conta);
 						BancoDeDados.poupancas.add(conta.getPoupanca());
-						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informações:\n" + conta.toString());
+                                                //Adiciona tudo ao banco de dados
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nSuas informaÃ§Ãµes:\n" + conta.toString());
 					}
-					
+				//tratando exceÃ§Ãµes	
 				} catch (NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null, "Por favor digite um número em \"Número\"");
+					JOptionPane.showMessageDialog(null, "Por favor digite um nÃºmero em \"NÃºmero\"");
 				} catch (CpfCnpjInvalidoException | CepInvalidoException | SenhaInvalidaException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 			}

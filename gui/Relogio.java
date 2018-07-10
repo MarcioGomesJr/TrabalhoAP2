@@ -3,7 +3,7 @@ package gui;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
-//Classe para registrar a hora e data, que será necessária para as outras classes
+//Classe para registrar a hora e data, que serÃ¡ necessÃ¡ria para as outras classes
 //Rafael Nunes Santana
 
 public class Relogio {
@@ -21,7 +21,7 @@ public class Relogio {
 		atualizarHora();
 	}
 
-	//Método que atualiza o relógio e deve ser chamado a cada segundo
+	//MÃ©todo que atualiza o relÃ³gio e deve ser chamado a cada segundo
 	public void atualizarHora() {
 		
 		calendario = Calendar.getInstance();
@@ -30,7 +30,7 @@ public class Relogio {
 		minuto = calendario.get(Calendar.MINUTE);
 		segundo = calendario.get(Calendar.SECOND);
 		dia = calendario.get(Calendar.DAY_OF_MONTH);
-		//Por algum motivo o mês retornado aqui é atrasado...
+		//Por algum motivo o mÃªs retornado aqui Ã© atrasado...
 		mes = calendario.get(Calendar.MONTH) + 1;
 		ano = calendario.get(Calendar.YEAR);
 		
