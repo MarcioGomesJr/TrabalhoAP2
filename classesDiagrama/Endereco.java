@@ -1,6 +1,7 @@
 package classesDiagrama;
 
-// Autoria: MÃ¡rcio Gomes Borges JÃºnior (201703685)
+// Autoria: Márcio Gomes Borges Jú(201703685)
+//Classe que gera endereço dos cadastros
 
 public class Endereco {
 		
@@ -15,6 +16,7 @@ public class Endereco {
 		private String estado;
 		private String cep;
 		
+                //Trecho de código que chama o método Endereço construtor q deve capturar a exceção CepInvalido que ele lança
 		public Endereco(String tipe, String tipoDeLogradouro, String logradouro, int numero,
 				String bairro, String cidade, String estado, String cep) throws CepInvalidoException {
 			this.tipe = tipe;
@@ -24,14 +26,14 @@ public class Endereco {
 			this.bairro = bairro;
 			this.cidade = cidade;
 			this.estado = estado;
-			geraid++;
-			id = String.valueOf(geraid);
+			geraid++;//Incrementação do valor geraid a cada endereço criado
+			id = String.valueOf(geraid);//Checagem de parametro, se é nulo ou nao
 			setCep(cep);
 		}
 
 		public Endereco(String tipoDeLogradouro, String logradouro, int numero, String bairro, String cidade, String estado,
 				String cep) throws CepInvalidoException {
-			super();
+			super();//acessando construtor da superclasse
 			this.tipoDeLogradouro = tipoDeLogradouro;
 			this.logradouro = logradouro;
 			this.numero = numero;
@@ -39,10 +41,11 @@ public class Endereco {
 			this.cidade = cidade;
 			this.estado = estado;
 			geraid++;
-			id = String.valueOf(geraid);
+			id = String.valueOf(geraid);//Checagem de parametro, se é nulo ou nao
 			setCep(cep);
 		}
 		
+                
 		private String gerarID() {
 			return "Endereço - " + geraid;
 		}
@@ -84,11 +87,11 @@ public class Endereco {
 			return cep;
 		}
 
-		protected void setTipe(String tipe) {
+		protected void setTipe(String tipe) {//Metodo que permite o acesso à variavel tendo o total controle sobre ela
 			this.tipe = tipe;
 		}
 
-		protected void setTipoDeLogradouro(String tipoDeLogradouro) {
+		protected void setTipoDeLogradouro(String tipoDeLogradouro) {//Todos os valores ficarão armazenados na variavel
 			this.tipoDeLogradouro = tipoDeLogradouro;
 		}
 
@@ -111,18 +114,19 @@ public class Endereco {
 		protected void setEstado(String estado) {
 			this.estado = estado;
 		}
-
+                //Trecho de código que chama o método setCep construtor q deve capturar a exceção CepInvalido que ele lança
 		protected void setCep(String cep) throws CepInvalidoException {
-				if (verificaCEP(cep)) {
+                    //Toda vez q acessar o metodo
+				if (verificaCEP(cep)) {//Verificação CEP
 					this.cep = cep;
 				}
 				
-				else {
+				else {//Lança a exceção se cep for invalid
 					throw new CepInvalidoException();
 				}
 		}
 
-		@Override
+		@Override//Mensagem mostrando dados do endereço preenchidos com as entradas fornecidas
 		public String toString() {
 			return gerarID() + "\nTipe: " + tipe + "\nTipoDeLogradouro: " + tipoDeLogradouro
 					+ "\nLogradouro: " + logradouro + "\nNúmero: " + numero + "\nBairro: " + bairro + "\nCidade: " + cidade
